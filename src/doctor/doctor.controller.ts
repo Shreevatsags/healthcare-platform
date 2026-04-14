@@ -18,7 +18,6 @@ import { Role } from '../common/enums/role.enum';
 export class DoctorController {
   constructor(private doctorService: DoctorService) {}
 
-  // 🧑‍⚕️ Onboarding (Create/Update)
   @Post('profile')
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.DOCTOR)
@@ -26,15 +25,11 @@ export class DoctorController {
     return this.doctorService.createOrUpdate(req.user.sub, dto);
   }
 
-  // 🔍 Discovery API
-  @Get('all')
-  getAllDoctors() {
-    return this.doctorService.findAll();
-  }
-
-  // 🔍 Search by specialization
-  @Get('search')
-  searchDoctor(@Query('specialization') specialization: string) {
-    return this.doctorService.findBySpecialization(specialization);
+  @Get()
+  getDoctors(
+    @Query('specialization') specialization?: string,
+    @Query('name') name?: string,
+  ) {
+    return this.doctorService.findDoctors(specialization, name);
   }
 }

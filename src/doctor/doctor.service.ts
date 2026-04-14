@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+
 type Doctor = {
   userId: number;
   name: string;
@@ -9,14 +10,18 @@ type Doctor = {
 
 @Injectable()
 export class DoctorService {
-  private doctors: Doctor[] = []; // ✅ FIXED
+  private doctors: Doctor[] = [];
 
+  // 🧑‍⚕️ Create or Update Doctor Profile
   createOrUpdate(userId: number, dto: any) {
     const existing = this.doctors.find((d) => d.userId === userId);
 
     if (existing) {
       Object.assign(existing, dto);
-      return { message: 'Doctor profile updated', data: existing };
+      return {
+        message: 'Doctor profile updated',
+        data: existing,
+      };
     }
 
     const doctor: Doctor = {
@@ -25,17 +30,44 @@ export class DoctorService {
     };
 
     this.doctors.push(doctor);
-    return { message: 'Doctor profile created', data: doctor };
+
+    return {
+      message: 'Doctor profile created',
+      data: doctor,
+    };
   }
 
-  findAll() {
-    return this.doctors;
-  }
 
-  findBySpecialization(specialization: string) {
-    return this.doctors.filter(
-      (d) =>
-        d.specialization.toLowerCase() === specialization.toLowerCase(),
-    );
+  findDoctors(specialization?: string, name?: string) {
+    let filteredDoctors = this.doctors;
+
+
+    if (specialization) {
+      filteredDoctors = filteredDoctors.filter(
+        (d) =>
+          d.specialization.toLowerCase() ===
+          specialization.toLowerCase(),
+      );
+    }
+
+   
+    if (name) {
+      filteredDoctors = filteredDoctors.filter((d) =>
+        d.name.toLowerCase().includes(name.toLowerCase()),
+      );
+    }
+
+   
+    if (!filteredDoctors.length) {
+      return {
+        message: 'No doctors found',
+        data: [],
+      };
+    }
+
+    return {
+      message: 'Doctors fetched successfully',
+      data: filteredDoctors,
+    };
   }
 }
