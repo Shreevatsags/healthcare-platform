@@ -1,11 +1,14 @@
-import { Module } from '@nestjs/common';
-import { JwtModule } from '@nestjs/jwt';
-import { AuthController } from './auth/auth.controller';
+import { Module } from '@nestjs/common'; // ✅ ADD THIS
+
 import { AuthService } from './auth/auth.service';
 import { UsersService } from './users/users.service';
+import { JwtStrategy } from './auth/jwt.strategy';
+import { AuthController } from './auth/auth.controller';
 import { DoctorController } from './doctor/doctor.controller';
 import { PatientController } from './patient/patient.controller';
-import { JwtStrategy } from './auth/jwt.strategy';
+import { DoctorService } from './doctor/doctor.service';
+import { PatientService } from './patient/patient.service';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -15,6 +18,12 @@ import { JwtStrategy } from './auth/jwt.strategy';
     }),
   ],
   controllers: [AuthController, DoctorController, PatientController],
-  providers: [AuthService, UsersService, JwtStrategy],
+  providers: [
+    AuthService,
+    UsersService,
+    JwtStrategy,
+    DoctorService,
+    PatientService,
+  ],
 })
 export class AppModule {}
