@@ -98,13 +98,29 @@ DB_NAME=healthcare_db
 
 JWT_SECRET=your_secret_key
 
-## Support
+## 📊 API Documentation
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Swagger documentation:
 
-## Stay in touch
+http://localhost:3000/api
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+
+## 🔒 Security Features
+JWT Authentication
+Password Hashing with bcrypt
+Input Validation
+Protected Routes
+Role-Based Authorization
+
+
+## 🤝 Contributing
+Fork the repository
+Create a feature branch
+Commit your changes
+Push to your branch
+Create a Pull Request
+
+## 👨‍💻 Author
+
+Developed by Shreevatsa
 
