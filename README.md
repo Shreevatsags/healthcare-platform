@@ -98,11 +98,13 @@ DB_NAME=healthcare_db
 
 JWT_SECRET=your_secret_key
 
+
 ## 📊 API Documentation
 
 Swagger documentation:
 
 http://localhost:3000/api
+
 
 
 ## 🔒 Security Features
@@ -113,12 +115,14 @@ Protected Routes
 Role-Based Authorization
 
 
+
 ## 🤝 Contributing
 Fork the repository
 Create a feature branch
 Commit your changes
 Push to your branch
 Create a Pull Request
+
 
 ## 👨‍💻 Author
 
